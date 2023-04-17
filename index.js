@@ -70,7 +70,7 @@ res.status(500).json({
   
 
 })
-
+console.log()
 app.listen(3021, () => {
-    console.log("server is running on port 3000")
+    console.log("server is running on port 3021")
 });
