@@ -7,7 +7,7 @@ app.use(cors())
 app.use(express.json({
     verify: (req, res, buf) => {
         const url = req.originalUrl;
-        if (url.startsWith("/webhook")){
+        if (url.startsWith("/webhooks")){
          req.rawBody = buf.toString();
         }
     }
@@ -25,8 +25,8 @@ app.post("/checkout", async (req, res) => {
 
     try {
         const charge = await resources.Charge.create({
-            name: "Investing Platform",
-            description: "Invest here",
+            name: "Deposit",
+            description: "deposit",
             local_price: {
                 amount: amount,
                 currency: currency,
@@ -46,7 +46,7 @@ app.post("/checkout", async (req, res) => {
         })
     }
 })
-app.post("/webhook", async (req, res) => {
+app.post("/webhooks", async (req, res) => {
     try{
     const event = webhook.verifyEventBody(
         req.rawBody,
